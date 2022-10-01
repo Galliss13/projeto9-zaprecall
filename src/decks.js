@@ -7,3 +7,5 @@ const deck_standard = [
 {Q:"Usamos o npm para __", R:"gerenciar os pacotes necessários e suas dependências"},
 {Q:"Usamos props para __", R: "passar diferentes informações para componentes"},
 {Q:"Usamos estado (state) para __", R:"dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"}]
+
+export default deck_standard

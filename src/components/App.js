@@ -3,10 +3,9 @@ import Container from "./Container";
 import Footer from "./Footer";
 
 import styled from "styled-components";
-import deck_standard from "../decks.js";
+import deck_standard from "../decks";
 
 export default function App() {
-    console.log(deck_standard);
   return (
     <ScreenContainer>
       <Header />
