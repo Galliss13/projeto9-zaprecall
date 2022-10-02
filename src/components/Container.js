@@ -1,13 +1,22 @@
-import Question from "./Question"
+import Question from "./Question";
 
 export default function Container(props) {
-  const {deck} = props
-  const layout = []
+  const { questionChange, setQuestionChange, deck } = props;
+  const layout = [];
   return (
     <>
-      {deck.map((p, index) => layout.push(<Question key={index} Q={deck.Q} R={deck.R} index={index}/>))}
+      {deck.map((p, index) =>
+        layout.push(
+          <Question 
+          key={index + 1} 
+          questionChange={questionChange}
+          setQuestionChange={setQuestionChange}
+          deck={deck}
+          index={index} 
+          />
+        )
+      )}
       {layout}
     </>
   );
 }
-

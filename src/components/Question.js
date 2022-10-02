@@ -1,12 +1,32 @@
 import styled from "styled-components";
+import seta_play from "../img/seta_play.png";
+import seta_virar from "../img/seta_virar.png"
 
 export default function Question(props) {
+  const { questionChange, setQuestionChange, deck, index } = props;
+
+  if (questionChange[index] === "closed") {
     return (
-        <ContainerQuestion>
-            <p>Pergunta {props.index + 1}</p>
-        </ContainerQuestion>
-    )
-};
+      <ContainerQuestion >
+        <p>Pergunta {props.index + 1}</p>
+        <img src={seta_play} alt="play" />
+      </ContainerQuestion>
+    );
+  } else if (questionChange[index] === "opened_Q") {
+    return (
+      <ContainerQuestionOpened>
+        <p>{deck[index].Q}</p>
+        <img src={seta_virar} alt="play" />
+      </ContainerQuestionOpened>
+    );
+  } else if (questionChange[index] === "opened_R") {
+    return (
+      <ContainerQuestionOpened>
+        <p>{deck[index].R}</p>
+      </ContainerQuestionOpened>
+    );
+  }
+}
 
 const ContainerQuestion = styled.div`
   width: 300px;
@@ -29,3 +49,20 @@ const ContainerQuestion = styled.div`
     color: #333333;
   }
 `;
+
+const ContainerQuestionOpened = styled(ContainerQuestion) `
+  min-height: 100px;
+  background: #FFFFD5;
+  font-family: 'Recursive';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  position: relative;
+  flex-direction: column;
+
+  img {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+`

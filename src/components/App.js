@@ -2,15 +2,24 @@ import Header from "./Header";
 import Container from "./Container";
 import Footer from "./Footer";
 
+import React from "react";
 import styled from "styled-components";
 import deck_standard from "../decks";
 
 export default function App() {
+  const arrayChange = deck_standard.map((q) => "closed");
+  const [questionChange, setQuestionChange] = React.useState(arrayChange);
   return (
     <ScreenContainer>
       <Header />
-      <Container deck={deck_standard} />
-      <Footer />
+      <Container
+        questionChange={questionChange}
+        setQuestionChange={setQuestionChange}
+        deck={deck_standard}
+      />
+      <Footer
+        questionChange={questionChange}
+      />
     </ScreenContainer>
   );
 }

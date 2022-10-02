@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-export default function Footer() {
+export default function Footer(props) {
   return (
     <ContainerFooter>
       <ContainerButtons>
-        <button>Não lembrei</button>
-        <button>Quase Lembrei</button>
-        <button>Zap!</button>
+        <Button cor = '#FF3030'>Não lembrei</Button>
+        <Button cor = '#FF922E'>Quase Lembrei</Button>
+        <Button cor = '#2FBE34'>Zap!</Button>
       </ContainerButtons>
+      <p>CONCLUÍDOS</p>
     </ContainerFooter>
   );
 }
@@ -34,22 +35,23 @@ const ContainerButtons = styled.div`
   width: 80%;
   justify-content: space-between;
   margin: 20px;
-
-  button {
-    width: 90px;
-    font-family: "Recursive";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #ffffff;
-    background: blue;
-    border-radius: 5px;
-    border: 1px solid blue;
-    padding: 5px;
-  }
 `;
+
+const Button = styled.button `
+  width: 95px;
+  height: 40px;
+  font-family: "Recursive";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  background: ${props => props.cor};
+  border-radius: 5px;
+  border: 1px solid;
+  padding: 5px;
+`
