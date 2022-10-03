@@ -6,6 +6,7 @@ export default function Container(props) {
   deck.map((p, index) =>
     layout.push(
       <Question 
+      data-identifier = 'flashcard'
       key={index + 1} 
       questionChange={questionChange}
       setQuestionChange={setQuestionChange}

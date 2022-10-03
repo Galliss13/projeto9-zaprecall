@@ -1,21 +1,33 @@
 import styled from "styled-components";
-import seta_play from "../img/seta_play.png"
+import React from "react";
+import seta_play from "../img/seta_play.png";
 import seta_virar from "../img/seta_virar.png";
 import icone_certo from "../img/icone_certo.png";
 import icone_erro from "../img/icone_erro.png";
 import icone_quase from "../img/icone_quase.png";
 
-
 export default function Question(props) {
-  const { questionChange, setQuestionChange, iconeChange, setIconeChange, setCounter, counter, deck, index } = props;
-
+  const {
+    questionChange,
+    setQuestionChange,
+    iconeChange,
+    setIconeChange,
+    setCounter,
+    counter,
+    deck,
+    index,
+  } = props;
 
   function OpenQuestion(i) {
-    if (!questionChange.includes("opened_Q") && !questionChange.includes("opened_R") && iconeChange[index] === seta_play) {
+    if (
+      !questionChange.includes("opened_Q") &&
+      !questionChange.includes("opened_R") &&
+      iconeChange[index] === seta_play
+    ) {
       const newChange = [...questionChange];
       newChange[i] = "opened_Q";
       setQuestionChange(newChange);
-  
+
       const newIconeChange = [...iconeChange];
       newIconeChange[i] = seta_virar;
       setIconeChange(newIconeChange);
@@ -26,7 +38,6 @@ export default function Question(props) {
     const newChange = [...questionChange];
     newChange[i] = "opened_R";
     setQuestionChange(newChange);
-
   }
 
   function VerifyButton(i, icone) {
@@ -44,28 +55,56 @@ export default function Question(props) {
   if (questionChange[index] === "closed") {
     return (
       <ContainerQuestion>
-        <p>Pergunta {index + 1}</p>
-        <img onClick={() => OpenQuestion(index)} src={iconeChange[index]} alt="play" />
+        <Pergunta data-identifier='flashcard-index-item'>Pergunta {index + 1}</Pergunta>
+        <div data-identifier='flashcard-shown-btn'>
+        <img data-identifier='flashcard-status'
+          onClick={() => OpenQuestion(index)}
+          src={iconeChange[index]}
+          alt="play"
+        />
+        </div>
+
       </ContainerQuestion>
     );
-
   } else if (questionChange[index] === "opened_Q") {
     return (
       <ContainerQuestionOpened>
-        <p>{deck[index].Q}</p>
-        <img onClick={() => TurnFlashcard(index)} src={iconeChange[index]} alt="flashcard question" />
+        <p data-identifier='flashcard-question'>{deck[index].Q}</p>
+        <img data-identifier='flashcard-turn-btn'
+          onClick={() => TurnFlashcard(index)}
+          src={iconeChange[index]}
+          alt="flashcard question"
+        />
       </ContainerQuestionOpened>
     );
-
   } else if (questionChange[index] === "opened_R") {
     return (
       <ContainerQuestionOpened>
-        <p>{deck[index].R}</p>
+        <p data-identifier='flashcard-answer'>{deck[index].R}</p>
         <ContainerButtons>
-          <Button onClick={() => VerifyButton(index, icone_erro)} cor = '#FF3030'>Não lembrei</Button>
-          <Button onClick={() => VerifyButton(index, icone_quase)} cor = '#FF922E'>Quase Lembrei</Button>
-          <Button onClick={() => VerifyButton(index, icone_certo)} cor = '#2FBE34'>Zap!</Button>
-      </ContainerButtons>
+        <div data-identifier='forgot-btn'>
+          <Button
+            onClick={() => VerifyButton(index, icone_erro, 'color: #FF3030')} 
+            cor="#FF3030">
+            Não lembrei
+          </Button>
+        </div>
+        <div data-identifier='almost-forgot-btn'>
+          <Button
+            onClick={() => VerifyButton(index, icone_quase, 'color: #FF922E')}
+            cor="#FF922E">
+            Quase Lembrei
+          </Button>
+        </div>
+        <div data-identifier='zap-btn'>
+          <Button 
+            onClick={() => VerifyButton(index, icone_certo, 'color: #2FBE34')}
+            cor="#2FBE34">
+            Zap!
+          </Button>
+        </div>
+
+        </ContainerButtons>
       </ContainerQuestionOpened>
     );
   }
@@ -82,25 +121,24 @@ const ContainerQuestion = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  p {
-    font-family: "Recursive";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    color: #333333;
-  }
 `;
 
-const ContainerQuestionOpened = styled(ContainerQuestion) `
+const Pergunta = styled.p`
+  font-family: "Recursive";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+`;
+
+const ContainerQuestionOpened = styled(ContainerQuestion)`
   min-height: 100px;
-  background: #FFFFD5;
+  background: #ffffd5;
   position: relative;
   flex-direction: column;
 
   p {
-    font-family: 'Recursive';
+    font-family: "Recursive";
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
@@ -111,16 +149,16 @@ const ContainerQuestionOpened = styled(ContainerQuestion) `
     bottom: 10px;
     right: 10px;
   }
-`
+`;
 
 const ContainerButtons = styled.div`
   display: flex;
   width: 80%;
   justify-content: space-between;
-  margin: 30px;
+  margin-right: 45px;
 `;
 
-const Button = styled.button `
+const Button = styled.button`
   width: 95px;
   height: 40px;
   font-family: "Recursive";
@@ -133,8 +171,8 @@ const Button = styled.button `
   justify-content: center;
   text-align: center;
   color: #ffffff;
-  background: ${props => props.cor};
+  background: ${(props) => props.cor};
   border-radius: 5px;
   border: 1px solid;
   padding: 5px;
-`
+`;

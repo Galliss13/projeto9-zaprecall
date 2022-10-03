@@ -6,7 +6,7 @@ export default function Footer(props) {
   
   return (
     <ContainerFooter>
-      <p>{counter}/{iconeChange.length} CONCLUÍDOS</p>
+      <p data-identifier='flashcard-counter'>{counter}/{iconeChange.length} CONCLUÍDOS</p>
     </ContainerFooter>
   );
 }

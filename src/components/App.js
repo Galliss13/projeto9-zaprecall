@@ -6,14 +6,12 @@ import React from "react";
 import styled from "styled-components";
 import deck_standard from "../decks";
 
-import seta_play from "../img/seta_play.png"
+import seta_play from "../img/seta_play.png";
 
 export default function App() {
   const arrayChange = deck_standard.map((q) => "closed");
   const [questionChange, setQuestionChange] = React.useState(arrayChange);
   const [counter, setCounter] = React.useState(0)
-
-  console.log(arrayChange, questionChange);
 
   const arrayIconeChange = deck_standard.map((i) => seta_play);
   const [iconeChange, setIconeChange] = React.useState(arrayIconeChange);
