@@ -1,7 +1,7 @@
 import Question from "./Question";
 
 export default function Container(props) {
-  const { questionChange, setQuestionChange, iconeChange, setIconeChange, deck } = props;
+  const { questionChange, setQuestionChange, iconeChange, setIconeChange, deck, setCounter, counter } = props;
   const layout = [];
   deck.map((p, index) =>
     layout.push(
@@ -11,6 +11,8 @@ export default function Container(props) {
       setQuestionChange={setQuestionChange}
       iconeChange={iconeChange}
       setIconeChange={setIconeChange}
+      setCounter={setCounter}
+      counter={counter}
       deck={deck}
       index={index} 
       />

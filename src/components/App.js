@@ -11,6 +11,7 @@ import seta_play from "../img/seta_play.png"
 export default function App() {
   const arrayChange = deck_standard.map((q) => "closed");
   const [questionChange, setQuestionChange] = React.useState(arrayChange);
+  const [counter, setCounter] = React.useState(0)
 
   console.log(arrayChange, questionChange);
 
@@ -25,10 +26,12 @@ export default function App() {
         deck={deck_standard}
         iconeChange={iconeChange}
         setIconeChange={setIconeChange}
+        setCounter={setCounter}
+        counter={counter}
       />
       <Footer
-        questionChange={questionChange}
-        setIconeChange={setIconeChange}
+        iconeChange={iconeChange}
+        counter={counter}
       />
     </ScreenContainer>
   );
