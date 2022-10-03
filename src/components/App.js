@@ -6,9 +6,16 @@ import React from "react";
 import styled from "styled-components";
 import deck_standard from "../decks";
 
+import seta_play from "../img/seta_play.png"
+
 export default function App() {
   const arrayChange = deck_standard.map((q) => "closed");
   const [questionChange, setQuestionChange] = React.useState(arrayChange);
+
+  console.log(arrayChange, questionChange);
+
+  const arrayIconeChange = deck_standard.map((i) => seta_play);
+  const [iconeChange, setIconeChange] = React.useState(arrayIconeChange);
   return (
     <ScreenContainer>
       <Header />
@@ -16,9 +23,12 @@ export default function App() {
         questionChange={questionChange}
         setQuestionChange={setQuestionChange}
         deck={deck_standard}
+        iconeChange={iconeChange}
+        setIconeChange={setIconeChange}
       />
       <Footer
         questionChange={questionChange}
+        setIconeChange={setIconeChange}
       />
     </ScreenContainer>
   );

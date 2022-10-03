@@ -1,21 +1,23 @@
 import Question from "./Question";
 
 export default function Container(props) {
-  const { questionChange, setQuestionChange, deck } = props;
+  const { questionChange, setQuestionChange, iconeChange, setIconeChange, deck } = props;
   const layout = [];
+  deck.map((p, index) =>
+    layout.push(
+      <Question 
+      key={index + 1} 
+      questionChange={questionChange}
+      setQuestionChange={setQuestionChange}
+      iconeChange={iconeChange}
+      setIconeChange={setIconeChange}
+      deck={deck}
+      index={index} 
+      />
+    )
+  )
   return (
     <>
-      {deck.map((p, index) =>
-        layout.push(
-          <Question 
-          key={index + 1} 
-          questionChange={questionChange}
-          setQuestionChange={setQuestionChange}
-          deck={deck}
-          index={index} 
-          />
-        )
-      )}
       {layout}
     </>
   );
